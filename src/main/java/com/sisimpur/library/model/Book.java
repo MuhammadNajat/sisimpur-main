@@ -1,9 +1,6 @@
 package com.sisimpur.library.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,5 +26,6 @@ public class Book {
     @Column(name = "published_year")
     private int publishedYear;
 
-    // Add more fields as needed
+    @ManyToOne
+    private User assignedTo;
 }
