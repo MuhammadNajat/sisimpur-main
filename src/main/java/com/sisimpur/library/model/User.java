@@ -16,14 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
     @Id
+    @GeneratedValue
     private Long id;
 
-    @Column(name = "name", length = 50)
     private String name;
 
-    @OneToOne
-    private Author author;
-
-    @OneToMany
+    @OneToMany(mappedBy = "assignedTo")
     private List<Book> assignedBooks;
 }

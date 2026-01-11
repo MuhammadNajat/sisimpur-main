@@ -6,19 +6,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
-@Table(name = "users")
+@Table(name = "authors")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Author {
     @Id
+    @GeneratedValue
     private Long id;
 
-    @Column(name = "name", length = 30)
     private String name;
 
-    @OneToOne
-    private User user;
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;
 }

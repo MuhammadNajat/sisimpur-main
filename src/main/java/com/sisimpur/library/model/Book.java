@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -13,8 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
-
     @Id
+    @GeneratedValue
     private Long id;
 
     @Column(name = "title", length = 255)
@@ -26,6 +28,15 @@ public class Book {
     @Column(name = "published_year")
     private int publishedYear;
 
+    @ManyToMany
+    @JoinTable(
+            name = "book_authors",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private List<Author> authors;
+
     @ManyToOne
-    private User assignedTo;
+    @JoinColumn(name = "user_id")
+    private User assignedTo; // null = available
 }
